@@ -1,5 +1,5 @@
-import Quiz from "../models/quiz.js";
-import Question from "../models/question.js";
+import Quiz from "../models/Quiz.js";
+import Question from "../models/Question.js";
 import mongoose from "mongoose";
 
 export async function createQuestion(

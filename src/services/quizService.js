@@ -1,4 +1,4 @@
-import Quiz from "../models/quiz.js";
+import Quiz from "../models/Quiz.js";
 
 
 export async function createQuiz(title, userId) {

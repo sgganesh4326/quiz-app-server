@@ -1,4 +1,4 @@
-import PlayerAnswer from "../models/playerAnswer.js";
+import PlayerAnswer from "../models/PlayerAnswer.js";
 
 export async function createPlayerAnswer({
     gameSessionId,

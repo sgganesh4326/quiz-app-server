@@ -1,7 +1,7 @@
 import crypto from "crypto";
 
-import Player from "../models/player.js";
-import GameSession from "../models/gameSession.js";
+import Player from "../models/Player.js";
+import GameSession from "../models/GameSession.js";
 
 
 /**
