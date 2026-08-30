@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-import GameSession from "../models/gameSession.js";
+import GameSession from "../models/GameSession.js";
 import Quiz from "../models/Quiz.js";
 import Question from "../models/Question.js";
 
