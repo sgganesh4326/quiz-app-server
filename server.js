@@ -3,12 +3,12 @@ import cors from "cors";
 import { connectDb } from "./src/config/db.js";
 import "dotenv/config";
 
-import authRoutes from "../backend/src/routes/authRoutes.js"
-import quizRoutes from "../backend/src/routes/quizRoutes.js";
-import questionRoutes from "../backend/src/routes/questionRoutes.js";
-import gameSessionRoutes from "../backend/src/routes/gameSessionRoutes.js";
-import playerRoutes from "../backend/src/routes/playerRoutes.js";
-import playerAnswerRoutes from "../backend/src/routes/playerAnswerRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js";
+import quizRoutes from "./src/routes/quizRoutes.js";
+import questionRoutes from "./src/routes/questionRoutes.js";
+import gameSessionRoutes from "./src/routes/gameSessionRoutes.js";
+import playerRoutes from "./src/routes/playerRoutes.js";
+import playerAnswerRoutes from "./src/routes/playerAnswerRoutes.js";
 
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./src/config/swagger.js";
