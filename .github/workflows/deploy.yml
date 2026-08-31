@@ -1,0 +1,47 @@
+name: Node.js CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ] # Trigger on pushes to main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies & run tests
+        run: |
+          npm ci
+          npm test --if-present
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # Clone or pull latest code
+            if [ ! -d "/var/www/my-node-app/.git" ]; then
+              git clone https://github.com/${{ github.repository }}.git /var/www/my-node-app
+            fi
+            
+            cd /var/www/my-node-app
+            git fetch --all
+            git reset --hard origin/main
+            
+            # Install production dependencies
+            npm ci --only=production
+            
+            # Restart app using PM2 zero-downtime reload
+            pm2 start ecosystem.config.js || pm2 restart all
+            pm2 save
